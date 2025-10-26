@@ -6,7 +6,8 @@ import {
   Routes,
   Route,
   useLocation,
-  useNavigate
+  useNavigate,
+  useMatch
 } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from '../../services/store';
@@ -47,6 +48,14 @@ const AppRoutes = () => {
   const ingredients = useSelector(selectAllIngredients);
   const isIngredientsLoading = useSelector(selectIngredientsIsLoading);
   const isAuthChecked = useSelector(selectIsAuthChecked);
+
+  // Для feed/:number
+  const feedMatch = useMatch('/feed/:number');
+  const feedNumber = feedMatch?.params.number;
+
+  // Для profile/orders/:number
+  const profileOrderMatch = useMatch('/profile/orders/:number');
+  const profileOrderNumber = profileOrderMatch?.params.number;
 
   useEffect(() => {
     dispatch(fetchIngredients());
@@ -141,7 +150,10 @@ const AppRoutes = () => {
           <Route
             path='/feed/:number'
             element={
-              <Modal title='' onClose={() => navigate(-1)}>
+              <Modal
+                title={feedNumber ? `#${feedNumber}` : ''}
+                onClose={() => navigate(-1)}
+              >
                 <OrderInfo />
               </Modal>
             }
@@ -150,7 +162,10 @@ const AppRoutes = () => {
             path='/profile/orders/:number'
             element={
               <ProtectedRoute>
-                <Modal title='' onClose={() => navigate(-1)}>
+                <Modal
+                  title={profileOrderNumber ? `#${profileOrderNumber}` : ''}
+                  onClose={() => navigate(-1)}
+                >
                   <OrderInfo />
                 </Modal>
               </ProtectedRoute>
