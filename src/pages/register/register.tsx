@@ -5,11 +5,19 @@ import { useDispatch } from '../../services/store';
 import { registerUser } from '../../services/slices/userSlice';
 import { useNavigate, useLocation } from 'react-router-dom';
 
+type LocationState = {
+  from?: {
+    pathname: string;
+  };
+};
+
 export const Register: FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const from = (location.state as any)?.from?.pathname || '/';
+
+  const state = location.state as LocationState | undefined;
+  const from = state?.from?.pathname || '/';
 
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');

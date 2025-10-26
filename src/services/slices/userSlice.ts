@@ -35,6 +35,8 @@ export const registerUser = createAsyncThunk(
   async (data: TRegisterData, { rejectWithValue }) => {
     try {
       const res = await registerUserApi(data);
+      localStorage.setItem('refreshToken', res.refreshToken);
+      setCookie('accessToken', res.accessToken);
       return res;
     } catch (err: unknown) {
       const { message } = err as Error;
@@ -48,6 +50,8 @@ export const loginUser = createAsyncThunk(
   async (data: TLoginData, { rejectWithValue }) => {
     try {
       const res = await loginUserApi(data);
+      localStorage.setItem('refreshToken', res.refreshToken);
+      setCookie('accessToken', res.accessToken);
       return res;
     } catch (err: unknown) {
       const { message } = err as Error;
@@ -143,8 +147,6 @@ const userSlice = createSlice({
         state.user = action.payload.user;
         state.accessToken = action.payload.accessToken;
         state.refreshToken = action.payload.refreshToken;
-        localStorage.setItem('refreshToken', action.payload.refreshToken);
-        setCookie('accessToken', action.payload.accessToken);
         state.isAuthChecked = true;
       })
       .addCase(registerUser.rejected, (state, action) => {
@@ -161,8 +163,6 @@ const userSlice = createSlice({
         state.user = action.payload.user;
         state.accessToken = action.payload.accessToken;
         state.refreshToken = action.payload.refreshToken;
-        localStorage.setItem('refreshToken', action.payload.refreshToken);
-        setCookie('accessToken', action.payload.accessToken);
         state.isAuthChecked = true;
       })
       .addCase(loginUser.rejected, (state, action) => {
