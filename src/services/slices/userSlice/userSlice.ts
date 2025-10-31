@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { TUser, TLoginData, TRegisterData } from '@utils-types';
-import { RootState } from '../store';
+import { RootState } from '../../store';
 import {
   registerUserApi,
   loginUserApi,
@@ -10,7 +10,7 @@ import {
   forgotPasswordApi,
   resetPasswordApi
 } from '@api';
-import { setCookie, getCookie, deleteCookie } from '../../utils/cookie';
+import { setCookie, getCookie, deleteCookie } from '../../../utils/cookie';
 
 interface IUserState {
   user: TUser | null;

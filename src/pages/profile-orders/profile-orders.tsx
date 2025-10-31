@@ -6,7 +6,7 @@ import {
   fetchProfileOrders,
   selectProfileOrders,
   selectProfileOrdersLoading
-} from '../../services/slices/profileOrdersSlice';
+} from '../../services/slices/profileOrdersSlice/profileOrdersSlice';
 
 export const ProfileOrders: FC = () => {
   const dispatch = useDispatch();
