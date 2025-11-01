@@ -2,11 +2,9 @@ import constructorReducer, {
   addToConstructor,
   removeFromConstructor,
   reorderConstructor,
-  resetConstructor,
-  constructorSelector
+  resetConstructor
 } from './constructorSlice';
-import { TIngredient, TConstructorIngredient } from '@utils-types';
-import { nanoid } from '@reduxjs/toolkit';
+import { TIngredient } from '@utils-types';
 
 // Мокаем nanoid, чтобы получать предсказуемые id
 jest.mock('@reduxjs/toolkit', () => {
@@ -74,8 +72,14 @@ describe('burgerConstructor slice', () => {
 
   // ✅ Удаление ингредиента
   it('удаление ингредиента по индексу', () => {
-    const stateWithIngredient = constructorReducer(initialState, addToConstructor(mainIngredient));
-    const stateAfterRemove = constructorReducer(stateWithIngredient, removeFromConstructor(0));
+    const stateWithIngredient = constructorReducer(
+      initialState,
+      addToConstructor(mainIngredient)
+    );
+    const stateAfterRemove = constructorReducer(
+      stateWithIngredient,
+      removeFromConstructor(0)
+    );
     expect(stateAfterRemove.ingredients).toHaveLength(0);
   });
 
@@ -90,14 +94,20 @@ describe('burgerConstructor slice', () => {
     expect(state.ingredients[0]._id).toBe('main1');
     expect(state.ingredients[1]._id).toBe('main2');
 
-    const stateAfterReorder = constructorReducer(state, reorderConstructor({ from: 0, to: 1 }));
+    const stateAfterReorder = constructorReducer(
+      state,
+      reorderConstructor({ from: 0, to: 1 })
+    );
     expect(stateAfterReorder.ingredients[0]._id).toBe('main2');
     expect(stateAfterReorder.ingredients[1]._id).toBe('main1');
   });
 
   // ⚠️ Сброс конструктора
   it('сброс конструктора', () => {
-    let state = constructorReducer(initialState, addToConstructor(bunIngredient));
+    let state = constructorReducer(
+      initialState,
+      addToConstructor(bunIngredient)
+    );
     state = constructorReducer(state, addToConstructor(mainIngredient));
     state = constructorReducer(state, resetConstructor());
     expect(state).toEqual(initialState);

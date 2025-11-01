@@ -1,4 +1,8 @@
-import orderReducer, { createOrder, fetchOrderByNumber, closeOrderModal } from './orderSlice';
+import orderReducer, {
+  createOrder,
+  fetchOrderByNumber,
+  closeOrderModal
+} from './orderSlice';
 import { TOrder } from '@utils-types';
 
 describe('orderSlice', () => {
@@ -62,7 +66,10 @@ describe('orderSlice', () => {
       number: 124,
       ingredients: ['3', '4']
     };
-    const action = { type: fetchOrderByNumber.fulfilled.type, payload: mockOrder };
+    const action = {
+      type: fetchOrderByNumber.fulfilled.type,
+      payload: mockOrder
+    };
     const state = orderReducer(initialState, action);
     expect(state.isOrderLoading).toBe(false);
     expect(state.currentOrder).toEqual(mockOrder);
@@ -71,7 +78,10 @@ describe('orderSlice', () => {
   });
 
   it('при fetchOrderByNumber.rejected сохраняет ошибку и isOrderLoading=false', () => {
-    const action = { type: fetchOrderByNumber.rejected.type, payload: 'Ошибка' };
+    const action = {
+      type: fetchOrderByNumber.rejected.type,
+      payload: 'Ошибка'
+    };
     const state = orderReducer(initialState, action);
     expect(state.isOrderLoading).toBe(false);
     expect(state.error).toBe('Ошибка');
@@ -79,7 +89,15 @@ describe('orderSlice', () => {
 
   it('closeOrderModal сбрасывает состояние', () => {
     const preState = {
-      currentOrder: { _id: '1', status: 'done', name: 'Заказ', createdAt: '', updatedAt: '', number: 1, ingredients: [] },
+      currentOrder: {
+        _id: '1',
+        status: 'done',
+        name: 'Заказ',
+        createdAt: '',
+        updatedAt: '',
+        number: 1,
+        ingredients: []
+      },
       orderNumber: 1,
       isOrderLoading: true,
       error: 'Ошибка'

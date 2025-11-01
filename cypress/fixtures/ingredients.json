@@ -1,54 +1,26 @@
-[
-  {
-    "_id": "1",
-    "name": "Булка с кунжутом",
-    "type": "bun",
-    "proteins": 10,
-    "fat": 20,
-    "carbohydrates": 30,
-    "calories": 400,
-    "price": 100,
-    "image": "/images/bun.png",
-    "image_large": "/images/bun-large.png",
-    "image_mobile": "/images/bun-mobile.png"
-  },
-  {
-    "_id": "2",
-    "name": "Котлета из говядины",
-    "type": "main",
-    "proteins": 20,
-    "fat": 15,
-    "carbohydrates": 5,
-    "calories": 250,
-    "price": 200,
-    "image": "/images/meat.png",
-    "image_large": "/images/meat-large.png",
-    "image_mobile": "/images/meat-mobile.png"
-  },
-  {
-    "_id": "3",
-    "name": "Сыр чеддер",
-    "type": "main",
-    "proteins": 25,
-    "fat": 30,
-    "carbohydrates": 0,
-    "calories": 300,
-    "price": 150,
-    "image": "/images/cheese.png",
-    "image_large": "/images/cheese-large.png",
-    "image_mobile": "/images/cheese-mobile.png"
-  },
-  {
-    "_id": "4",
-    "name": "Соус барбекю",
-    "type": "sauce",
-    "proteins": 0,
-    "fat": 5,
-    "carbohydrates": 10,
-    "calories": 50,
-    "price": 50,
-    "image": "/images/sauce.png",
-    "image_large": "/images/sauce-large.png",
-    "image_mobile": "/images/sauce-mobile.png"
-  }
-]
+{
+  "success": true,
+  "data": [
+    {
+      "_id": "bun1",
+      "name": "Булка тестовая",
+      "type": "bun",
+      "price": 100,
+      "image": "bun.png"
+    },
+    {
+      "_id": "main1",
+      "name": "Котлета тестовая",
+      "type": "main",
+      "price": 200,
+      "image": "main.png"
+    },
+    {
+      "_id": "sauce1",
+      "name": "Соус тестовый",
+      "type": "sauce",
+      "price": 50,
+      "image": "sauce.png"
+    }
+  ]
+}

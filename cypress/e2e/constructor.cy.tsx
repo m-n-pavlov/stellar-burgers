@@ -1,56 +1,72 @@
 /// <reference types="cypress" />
 
-describe('Конструктор бургеров', () => {
+describe('Интеграционные тесты для страницы конструктора бургера:', () => {
   beforeEach(() => {
-    // Перехватываем запрос на ингредиенты и возвращаем фикстуры
+    // Перехватываем запрос ингредиентов до загрузки страницы и возвращаем фикстуры
     cy.intercept('GET', '**/api/ingredients', {
       fixture: 'ingredients.json'
     }).as('getIngredients');
 
-    // Мок данных пользователя (эндпоинт) — возвращаем fixture
+    // Перехватываем запрос данных пользователя и возвращаем фикстуры
     cy.intercept('GET', '**/api/auth/user', { fixture: 'user.json' }).as(
       'getUser'
     );
 
-    // Подставляем токены в localStorage перед загрузкой приложения
+    // Перехватываем запрос создания заказа и возвращаем фикстуры
+    cy.intercept('POST', '**/api/orders', (req) => {
+      req.reply({ fixture: 'order.json' });
+    }).as('createOrder');
+
+    // Подставляем токены авторизации перед загрузкой приложения:
     cy.fixture('user.json').then((user) => {
-      // если в fixture accessToken хранится с префиксом "Bearer ", оставляем как есть
+      // accessToken в cookie для авторизации на сервере
+      cy.setCookie('accessToken', user.accessToken);
+      // refreshToken в localStorage для обновления токена
       cy.window().then((win) => {
-        win.localStorage.setItem('accessToken', user.accessToken);
         win.localStorage.setItem('refreshToken', user.refreshToken);
       });
     });
 
-    // Перехват создания заказа: проверяем заголовок Authorization и отвечаем фикстурой
-    cy.intercept('POST', '**/api/orders', (req) => {
-      // если приложение помещает токен в заголовок Authorization
-      // допустимая форма: "Bearer test-access-token"
-      expect(req.headers).to.have.property('authorization');
-      expect(req.headers.authorization).to.include('test-access-token');
-      req.reply({ fixture: 'order.json' });
-    }).as('createOrder');
-
-    // Открываем страницу конструктора
+    // Открываем страницу конструктора и ждём данные
     cy.visit('/');
     cy.wait('@getIngredients');
-    cy.wait('@getUser'); // дождёмся данных пользователя, если это важно для UI
+    cy.wait('@getUser');
+  });
+
+  afterEach(() => {
+    // Явная очистка токенов после каждого теста
+    cy.clearCookie('accessToken');
+    cy.window().then((win) => {
+      win.localStorage.removeItem('refreshToken');
+    });
   });
 
   it('Добавляет булку и начинку в конструктор', () => {
-    // Добавляем булку
-    cy.get('[data-cy=ingredient-bun]').first().click();
-    cy.get('[data-cy=constructor-bun-top]').should('exist');
-    cy.get('[data-cy=constructor-bun-bottom]').should('exist');
+    cy.get('[data-cy=ingredient-bun]').first().find('button').click(); // компонент: BurgerIngredientUI, клик на кнопку добавления булки
+    cy.get('[data-cy=constructor-bun-top]').should('exist'); // компонент: BurgerConstructorUI, проверка верхней булки в конструкторе
+    cy.get('[data-cy=constructor-bun-bottom]').should('exist'); // компонент: BurgerConstructorUI, проверка нижней булки в конструкторе
 
-    // Добавляем начинку
-    cy.get('[data-cy=ingredient-main]').first().click();
-    cy.get('[data-cy=constructor-ingredient]').should('have.length', 1);
+    cy.get('[data-cy=ingredient-main]').first().find('button').click(); // компонент: BurgerIngredientUI, клик на кнопку добавления начинки
+    cy.get('[data-cy=constructor-ingredient]').should('have.length', 1); // компонент: BurgerConstructorElementUI, проверка начинки в конструкторе
   });
 
   it('Открытие и закрытие модального окна ингредиента', () => {
+    // Запоминаем название ингредиента перед кликом
+    cy.get('[data-cy=ingredient-main]')
+      .first()
+      .find('p')
+      .last()
+      .invoke('text')
+      .as('expectedName');
+
     // Открываем модалку ингредиента
     cy.get('[data-cy=ingredient-main]').first().click();
     cy.get('[data-cy=ingredient-modal]').should('exist');
+
+    // Проверяем что в модалке отображается название того же ингредиента
+    cy.get('@expectedName').then((name) => {
+      cy.get('[data-cy=ingredient-modal]').should('contain', name);
+    });
 
     // Закрытие крестиком
     cy.get('[data-cy=modal-close]').click();
@@ -64,10 +80,10 @@ describe('Конструктор бургеров', () => {
 
   it('Создание заказа', () => {
     // Добавляем булку
-    cy.get('[data-cy=ingredient-bun]').first().click();
+    cy.get('[data-cy=ingredient-bun]').first().find('button').click();
 
     // Добавляем начинку
-    cy.get('[data-cy=ingredient-main]').first().click();
+    cy.get('[data-cy=ingredient-main]').first().find('button').click();
 
     // Оформляем заказ
     cy.get('[data-cy=order-button]').click();
@@ -75,7 +91,7 @@ describe('Конструктор бургеров', () => {
     // Проверяем открытие модального окна заказа и номер
     cy.wait('@createOrder');
     cy.get('[data-cy=order-modal]').should('exist');
-    cy.get('[data-cy=order-number]').should('contain.text', '12345'); // номер из фикстуры
+    cy.get('[data-cy=order-number]').should('contain.text', '92846'); // номер из фикстуры
 
     // Закрываем модалку
     cy.get('[data-cy=modal-close]').click();

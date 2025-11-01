@@ -27,9 +27,20 @@ describe('profileOrdersSlice', () => {
 
   it('fetchProfileOrders.fulfilled - сохраняет orders и isLoading=false', () => {
     const mockOrders: TOrder[] = [
-      { _id: '1', status: 'done', name: 'Заказ 1', createdAt: '', updatedAt: '', number: 101, ingredients: [] }
+      {
+        _id: '1',
+        status: 'done',
+        name: 'Заказ 1',
+        createdAt: '',
+        updatedAt: '',
+        number: 101,
+        ingredients: []
+      }
     ];
-    const action = { type: fetchProfileOrders.fulfilled.type, payload: mockOrders };
+    const action = {
+      type: fetchProfileOrders.fulfilled.type,
+      payload: mockOrders
+    };
     const state = profileOrdersReducer(initialState, action);
     expect(state.isLoading).toBe(false);
     expect(state.orders).toEqual(mockOrders);
@@ -37,7 +48,10 @@ describe('profileOrdersSlice', () => {
   });
 
   it('fetchProfileOrders.rejected - сохраняет ошибку и isLoading=false', () => {
-    const action = { type: fetchProfileOrders.rejected.type, payload: 'Ошибка' };
+    const action = {
+      type: fetchProfileOrders.rejected.type,
+      payload: 'Ошибка'
+    };
     const state = profileOrdersReducer(initialState, action);
     expect(state.isLoading).toBe(false);
     expect(state.error).toBe('Ошибка');
@@ -53,8 +67,19 @@ describe('profileOrdersSlice', () => {
   });
 
   it('fetchProfileOrderByNumber.fulfilled - сохраняет currentOrder и isLoading=false', () => {
-    const mockOrder: TOrder = { _id: '2', status: 'pending', name: 'Заказ 2', createdAt: '', updatedAt: '', number: 102, ingredients: [] };
-    const action = { type: fetchProfileOrderByNumber.fulfilled.type, payload: mockOrder };
+    const mockOrder: TOrder = {
+      _id: '2',
+      status: 'pending',
+      name: 'Заказ 2',
+      createdAt: '',
+      updatedAt: '',
+      number: 102,
+      ingredients: []
+    };
+    const action = {
+      type: fetchProfileOrderByNumber.fulfilled.type,
+      payload: mockOrder
+    };
     const state = profileOrdersReducer(initialState, action);
     expect(state.isLoading).toBe(false);
     expect(state.currentOrder).toEqual(mockOrder);
@@ -62,7 +87,10 @@ describe('profileOrdersSlice', () => {
   });
 
   it('fetchProfileOrderByNumber.rejected - сохраняет ошибку, currentOrder=null и isLoading=false', () => {
-    const action = { type: fetchProfileOrderByNumber.rejected.type, payload: 'Ошибка' };
+    const action = {
+      type: fetchProfileOrderByNumber.rejected.type,
+      payload: 'Ошибка'
+    };
     const state = profileOrdersReducer(initialState, action);
     expect(state.isLoading).toBe(false);
     expect(state.error).toBe('Ошибка');

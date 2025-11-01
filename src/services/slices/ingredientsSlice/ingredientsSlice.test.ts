@@ -49,7 +49,10 @@ describe('ingredientsSlice', () => {
   });
 
   it('fetchIngredients.fulfilled сохраняет данные и устанавливает isLoading в false', () => {
-    const action = { type: fetchIngredients.fulfilled.type, payload: mockIngredients };
+    const action = {
+      type: fetchIngredients.fulfilled.type,
+      payload: mockIngredients
+    };
     const state = ingredientsReducer(initialState, action);
     expect(state.isLoading).toBe(false);
     expect(state.ingredients).toEqual(mockIngredients);

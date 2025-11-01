@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">76.78% </span>
+                <span class="strong">98.21% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>43/56</span>
+                <span class='fraction'>55/56</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>5/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">76.78% </span>
+                <span class="strong">98.21% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>43/56</span>
+                <span class='fraction'>55/56</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -139,26 +139,26 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -194,29 +194,29 @@ const constructorSlice = createSlice({
   initialState,
   reducers: {
     addToConstructor: {
-      reducer: <span class="fstat-no" title="function not covered" >(state, { payload }: PayloadAction&lt;TConstructorIngredient&gt;) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        if (payload.type === 'bun') {</span>
-<span class="cstat-no" title="statement not covered" >          state.bun = payload;</span>
-<span class="cstat-no" title="statement not covered" >        } else {</span>
-<span class="cstat-no" title="statement not covered" >          state.ingredients.push(payload);</span>
-<span class="cstat-no" title="statement not covered" >        }</span>
+      reducer: (state, { payload }: PayloadAction&lt;TConstructorIngredient&gt;) =&gt; {
+        if (payload.type === 'bun') {
+          state.bun = payload;
+        } else {
+          state.ingredients.push(payload);
+        }
       },
-      prepare: <span class="fstat-no" title="function not covered" >(ingredient: TIngredient) =&gt; ({</span>
+      prepare: (ingredient: TIngredient) =&gt; ({
         payload: { ...ingredient, id: nanoid() }
       })
     },
-    removeFromConstructor: <span class="fstat-no" title="function not covered" >(state, { payload }: PayloadAction&lt;number&gt;) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      state.ingredients.splice(payload, 1);</span>
+    removeFromConstructor: (state, { payload }: PayloadAction&lt;number&gt;) =&gt; {
+      state.ingredients.splice(payload, 1);
     },
-    reorderConstructor: <span class="fstat-no" title="function not covered" >(</span>
-<span class="cstat-no" title="statement not covered" >      state,</span>
-<span class="cstat-no" title="statement not covered" >      { payload }: PayloadAction&lt;{ from: number; to: number }&gt;</span>
-<span class="cstat-no" title="statement not covered" >    ) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      const { from, to } = payload;</span>
-<span class="cstat-no" title="statement not covered" >      const [moved] = state.ingredients.splice(from, 1);</span>
-<span class="cstat-no" title="statement not covered" >      state.ingredients.splice(to, 0, moved);</span>
+    reorderConstructor: (
+      state,
+      { payload }: PayloadAction&lt;{ from: number; to: number }&gt;
+    ) =&gt; {
+      const { from, to } = payload;
+      const [moved] = state.ingredients.splice(from, 1);
+      state.ingredients.splice(to, 0, moved);
     },
-    resetConstructor: <span class="fstat-no" title="function not covered" >() =&gt; initialState</span>
+    resetConstructor: () =&gt; initialState
   }
 });
 &nbsp;
@@ -238,7 +238,7 @@ export default constructorSlice.reducer;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-10-31T15:05:23.665Z
+                at 2025-11-01T02:26:42.774Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
