@@ -4,11 +4,11 @@ import { Preloader } from '@ui';
 import { OrderInfoUI } from '@ui';
 import { TIngredient, TOrder } from '@utils-types';
 import { useSelector, useDispatch } from '../../services/store';
-import { selectAllIngredients } from '../../services/slices/ingredientsSlice';
+import { selectAllIngredients } from '../../services/slices/ingredientsSlice/ingredientsSlice';
 import {
   fetchProfileOrderByNumber,
   ordersInfoDataSelector
-} from '../../services/slices/profileOrdersSlice';
+} from '../../services/slices/profileOrdersSlice/profileOrdersSlice';
 
 export const OrderInfo: FC = () => {
   const { number } = useParams<{ number: string }>();

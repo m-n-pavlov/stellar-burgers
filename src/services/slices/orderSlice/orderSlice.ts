@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { TOrder } from '@utils-types';
 import { orderBurgerApi, getOrderByNumberApi } from '@api';
-import { RootState } from '../store';
+import { RootState } from '../../store';
 
 interface IOrderState {
   currentOrder: TOrder | null;

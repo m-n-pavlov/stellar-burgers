@@ -4,12 +4,12 @@ import {
   useDispatch as dispatchHook,
   useSelector as selectorHook
 } from 'react-redux';
-import ingredientsReducer from '../../src/services/slices/ingredientsSlice';
-import constructorReducer from '../../src/services/slices/constructorSlice';
-import orderReducer from '../../src/services/slices/orderSlice';
-import feedReducer from '../../src/services/slices/feedSlice';
-import profileOrdersReducer from '../../src/services/slices/profileOrdersSlice';
-import userReducer from '../../src/services/slices/userSlice';
+import ingredientsReducer from './slices/ingredientsSlice/ingredientsSlice';
+import constructorReducer from './slices/constructorSlice/constructorSlice';
+import orderReducer from './slices/orderSlice/orderSlice';
+import feedReducer from './slices/feedSlice/feedSlice';
+import profileOrdersReducer from './slices/profileOrdersSlice/profileOrdersSlice';
+import userReducer from './slices/userSlice/userSlice';
 
 const rootReducer = combineReducers({
   ingredients: ingredientsReducer,

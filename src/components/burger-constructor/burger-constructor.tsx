@@ -4,15 +4,15 @@ import { useSelector, useDispatch } from '../../services/store';
 import {
   constructorSelector,
   resetConstructor
-} from '../../services/slices/constructorSlice';
+} from '../../services/slices/constructorSlice/constructorSlice';
 import {
   selectIsOrderLoading,
   selectCurrentOrder,
   closeOrderModal as closeOrderAction,
   createOrder
-} from '../../services/slices/orderSlice';
+} from '../../services/slices/orderSlice/orderSlice';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { selectAccessToken } from '../../services/slices/userSlice';
+import { selectAccessToken } from '../../services/slices/userSlice/userSlice';
 import { TConstructorIngredient } from '@utils-types';
 
 export const BurgerConstructor: FC = () => {

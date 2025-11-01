@@ -15,11 +15,11 @@ import {
   fetchIngredients,
   selectAllIngredients,
   selectIngredientsIsLoading
-} from '../../services/slices/ingredientsSlice';
+} from '../../services/slices/ingredientsSlice/ingredientsSlice';
 import {
   fetchUser,
   selectIsAuthChecked
-} from '../../services/slices/userSlice';
+} from '../../services/slices/userSlice/userSlice';
 import { Preloader } from '@ui';
 import {
   ConstructorPage,
