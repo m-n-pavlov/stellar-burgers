@@ -3,7 +3,7 @@ import { Navigate, useLocation } from 'react-router-dom';
 import {
   selectAccessToken,
   selectIsAuthChecked
-} from '../../services/slices/userSlice';
+} from '../../services/slices/userSlice/userSlice';
 import { ReactElement } from 'react';
 import { useSelector } from '../../services/store';
 

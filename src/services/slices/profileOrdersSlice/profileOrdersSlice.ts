@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { TOrder } from '@utils-types';
 import { getOrdersApi, getOrderByNumberApi } from '@api';
-import { RootState } from '../store';
+import { RootState } from '../../store';
 
 export type ProfileOrdersState = {
   orders: TOrder[];
