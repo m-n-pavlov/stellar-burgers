@@ -1,19 +1,42 @@
-# Проектная работа 11-го спринта
+# Stellar Burgers
 
-[Макет](<https://www.figma.com/file/vIywAvqfkOIRWGOkfOnReY/React-Fullstack_-Проектные-задачи-(3-месяца)_external_link?type=design&node-id=0-1&mode=design>)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) ![Redux](https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=redux&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white) ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
 
-[Чеклист](https://www.notion.so/praktikum/0527c10b723d4873aa75686bad54b32e?pvs=4)
+[Посмотреть ДЕМО](#)
 
-## Этапы работы:
+Preview.jpg
 
-1. Разверните проект и ознакомьтесь с кодом. Все необходимые вам компоненты уже созданы и лежат в папке `src/components`
+## Описание
 
-2. Настройте роутинг.
+Многофункциональное веб-приложение для заказа космических бургеров. 
 
-3. Напишите функционал запросов данных с сервера, используя `Redux` и глобальный `store`. Сами "ручки" уже прописаны и лежат в `utils/burger-api.ts`
+**Функционал**
 
-4. Настройте авторизацию и создайте защищённые роуты.
+* Конструктор бургеров: сборка уникального заказа из ингредиентов, получаемых с сервера
+* Лента заказов: обновление статусов заказов в реальном времени
+* Личный кабинет: профиль пользователя с историей заказов и возможностью редактирования данных
+* Система авторизации: регистрация, логин, восстановление пароля и защита приватных роутов
+* Модальные окна: детальная информация об ингредиентах и заказах через URL-адреса
+* UX: лоадеры для всех асинхронных запросов
 
-## Важно:
+## Стек технологий
 
-Для корректной работы запросов к серверу необходимо добавить переменную BURGER_API_URL в окружение. Сама ссылка находится в файле `.env.example`.
+**Frontend**
+* React: React Hooks, Context API
+* Redux Toolkit: Slices, асинхронные Thunks
+* TypeScript: полная типизация компонентов, экшенов и состояния
+* React Router: динамические и защищенные маршруты
+
+**Сборка**
+* Webpack
+* ESLint
+
+## Запуск проекта
+
+```bash
+npm install
+npm run start
+```
+
+**Настройка API**
+* По умолчанию проект использует актуальный эндпоинт Практикума. Для смены сервера создайте `.env`: `BURGER_API_URL=https://norma.education-services.ru/api`
