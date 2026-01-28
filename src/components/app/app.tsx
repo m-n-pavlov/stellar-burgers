@@ -2,7 +2,7 @@ import '../../index.css';
 import styles from './app.module.css';
 import { AppHeader } from '@components';
 import {
-  BrowserRouter,
+  HashRouter,
   Routes,
   Route,
   useLocation,
@@ -178,12 +178,12 @@ const AppRoutes = () => {
 };
 
 const App = () => (
-  <BrowserRouter>
+  <HashRouter>
     <div className={styles.app}>
       <AppHeader />
       <AppRoutes />
     </div>
-  </BrowserRouter>
+  </HashRouter>
 );
 
 export default App;
