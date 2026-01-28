@@ -2,7 +2,7 @@
 
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) ![Redux](https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=redux&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white) ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
 
-[Live Demo](#)
+[Live Demo](https://m-n-pavlov.github.io/stellar-burgers/)
 
 <img src="assets/preview.png" alt="Превью проекта" width="100%">
 
@@ -44,3 +44,7 @@ npm run start
 ```env
 BURGER_API_URL=https://norma.education-services.ru/api
 ```
+
+## Особенности
+* **Загрузка данных:** при переходе в «Ленту заказов» возможна задержка загрузки данных, это связано с особенностями работы API Практикума (большой объем передаваемых данных)
+* **Роутинг:** Для корректной работы приложения на GitHub Pages используется `HashRouter`
